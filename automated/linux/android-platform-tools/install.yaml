@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<title>install.yaml\android-platform-tools\linux\automated - test-definitions.git - Read only mirror of https://github.com/Linaro/test-definitions
+</title>
+<meta name='generator' content='cgit v1.2.1'/>
+<meta name='robots' content='index, nofollow'/>
+<link rel='stylesheet' type='text/css' href='/cgit-css/cgit.css'/>
+<link rel='shortcut icon' href='/favicon.ico'/>
+<link rel='alternate' title='Atom feed' href='https://git.linaro.org/qa/test-definitions.git/atom/automated/linux/android-platform-tools/install.yaml?h=master' type='application/atom+xml'/>
+<link rel='vcs-git' href='https://git.linaro.org/qa/test-definitions.git' title='test-definitions.git Git repository'/>
+<link rel='vcs-git' href='ssh://git@git.linaro.org/qa/test-definitions.git' title='test-definitions.git Git repository'/>
+</head>
+<body>
+<link rel='stylesheet' type='text/css' href='/cgit-css/linaro.css' />
+<script src="/cgit-css/linaro.js"> </script>
+<div id='cgit'><table id='header'>
+<tr>
+<td class='logo' rowspan='2'><a href='/'><img src='/cgit-css/git-logo.png' alt='cgit logo'/></a></td>
+<td class='main'><a href='/'>index</a> : <a title='test-definitions.git' href='/qa/test-definitions.git/'>test-definitions.git</a></td><td class='form'><form method='get'>
+<select name='h' onchange='this.form.submit();'>
+<option value='erp-17.08'>erp-17.08</option>
+<option value='erp-18.01'>erp-18.01</option>
+<option value='erp-18.06'>erp-18.06</option>
+<option value='kselftest-5.1'>kselftest-5.1</option>
+<option value='master' selected='selected'>master</option>
+</select> <input type='submit' value='switch'/></form></td></tr>
+<tr><td class='sub'>Read only mirror of https://github.com/Linaro/test-definitions
+</td><td class='sub right'>Grokmirror User</td></tr></table>
+<table class='tabs'><tr><td>
+<a href='/qa/test-definitions.git/about/'>about</a><a href='/qa/test-definitions.git/'>summary</a><a href='/qa/test-definitions.git/refs/'>refs</a><a href='/qa/test-definitions.git/log/automated/linux/android-platform-tools/install.yaml'>log</a><a class='active' href='/qa/test-definitions.git/tree/automated/linux/android-platform-tools/install.yaml'>tree</a><a href='/qa/test-definitions.git/commit/automated/linux/android-platform-tools/install.yaml'>commit</a><a href='/qa/test-definitions.git/diff/automated/linux/android-platform-tools/install.yaml'>diff</a></td><td class='form'><form class='right' method='get' action='/qa/test-definitions.git/log/automated/linux/android-platform-tools/install.yaml'>
+<select name='qt'>
+<option value='grep'>log msg</option>
+<option value='author'>author</option>
+<option value='committer'>committer</option>
+<option value='range'>range</option>
+</select>
+<input class='txt' type='search' size='10' name='q' value=''/>
+<input type='submit' value='search'/>
+</form>
+</td></tr></table>
+<div class='path'>path: <a href='/qa/test-definitions.git/tree/'>root</a>/<a href='/qa/test-definitions.git/tree/automated'>automated</a>/<a href='/qa/test-definitions.git/tree/automated/linux'>linux</a>/<a href='/qa/test-definitions.git/tree/automated/linux/android-platform-tools'>android-platform-tools</a>/<a href='/qa/test-definitions.git/tree/automated/linux/android-platform-tools/install.yaml'>install.yaml</a></div><div class='content'>blob: 11cfd6d05badee6c4602d48fb544c769ecf15e83 (<a href='/qa/test-definitions.git/plain/automated/linux/android-platform-tools/install.yaml'>plain</a>)
+<table summary='blob content' class='blob'>
+<tr><td class='linenumbers'><pre><a id='n1' href='#n1'>1</a>
+<a id='n2' href='#n2'>2</a>
+<a id='n3' href='#n3'>3</a>
+<a id='n4' href='#n4'>4</a>
+<a id='n5' href='#n5'>5</a>
+<a id='n6' href='#n6'>6</a>
+<a id='n7' href='#n7'>7</a>
+<a id='n8' href='#n8'>8</a>
+<a id='n9' href='#n9'>9</a>
+<a id='n10' href='#n10'>10</a>
+<a id='n11' href='#n11'>11</a>
+<a id='n12' href='#n12'>12</a>
+<a id='n13' href='#n13'>13</a>
+<a id='n14' href='#n14'>14</a>
+<a id='n15' href='#n15'>15</a>
+<a id='n16' href='#n16'>16</a>
+<a id='n17' href='#n17'>17</a>
+<a id='n18' href='#n18'>18</a>
+<a id='n19' href='#n19'>19</a>
+<a id='n20' href='#n20'>20</a>
+<a id='n21' href='#n21'>21</a>
+<a id='n22' href='#n22'>22</a>
+<a id='n23' href='#n23'>23</a>
+<a id='n24' href='#n24'>24</a>
+<a id='n25' href='#n25'>25</a>
+<a id='n26' href='#n26'>26</a>
+</pre></td>
+<td class='lines'><pre><code>metadata:
+    name: install-android-platform-tools
+    format: "Lava-Test-Shell Test Definition 1.0"
+    description: "Install android platform tools provided by Google from
+                  https://developer.android.com/studio/releases/platform-tools"
+    maintainer:
+        - chase.qi@linaro.org
+    os:
+        - ubuntu
+        - debian
+    devices:
+        - lxc
+
+    scope:
+        - functional
+
+params:
+    # Link examples
+    # https://dl.google.com/android/repository/platform-tools_r28.0.0-linux.zip
+    LINK: "https://dl.google.com/android/repository/platform-tools-latest-linux.zip"
+
+run:
+    steps:
+        - cd automated/linux/android-platform-tools
+        - if ! ./install.sh -l "${LINK}"; then command -v lava-test-raise &amp;&amp; lava-test-raise "Failed to install android platform tools!"; fi
+        - ../../utils/send-to-lava.sh ./output/result.txt
+</code></pre></td></tr></table>
+</div> <!-- class=content -->
+<div class='footer'>generated by <a href='https://git.zx2c4.com/cgit/about/'>cgit v1.2.1</a> (<a href='https://git-scm.com/'>git 2.18.0</a>) at 2019-09-05 01:13:04 +0000</div>
+</div> <!-- id=cgit -->
+</body>
+</html>
